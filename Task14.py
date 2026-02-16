@@ -1,25 +1,20 @@
-a = int(input())
-b = list(map(int, input().split()))
+n = int(input())
+a = list(map(int, input().split()))
 
+count_max = 0
+answer = a[0]
 
-d = {}
-for x in b:
-    if x in d:
-        d[x] += 1
-    else:
-        d[x] = 1
+for x in a:
+    count = 0
+    for y in a:
+        if x == y:
+            count += 1
+            
+    if count > count_max:
+        count_max = count
+        answer = x
+    elif count == count_max and x < answer:
+        count_max = count
+        answer = x
 
-
-m_v = 0
-m_k = 0
-
-
-for k, v in d.items():
-    if v > m_v:
-        m_v = v
-        m_k = k
-    elif v == m_v:
-        if k < m_k:
-            m_k = k
-
-print(m_k)
+print(answer)
